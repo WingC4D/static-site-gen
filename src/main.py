@@ -28,9 +28,13 @@ def generate_page(from_path: str, template_path: str, dst_path: str, basepath: s
         md = rf.read()
         html_str = markdown_to_html_node(md).to_html()
         title = extract_title(md)
-        tmp_contents = tmp_f.read(
-            ).replace(r'{{ Title }}', title
-                      ).replace(r'{{ Content }}',html_str).replace('href="/', f'href="{basepath}').replace('src="/', f'src="{basepath}')
+        
+        tmp_contents = tmp_f.read().replace(
+            r'{{ Title }}', title).replace(
+                r'{{ Content }}',html_str).replace(
+                    'href="/', f'href="{basepath}').replace(
+                        'src="/', f'src="{basepath}')
+        
         wf.write(str(tmp_contents))
 
 def generate_pages_recursive(dir_path_content: str, template_path: str, dest_dir_path: str, basepath: str) -> None:

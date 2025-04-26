@@ -74,13 +74,6 @@ def markdown_to_blocks(markdown: str) -> list[str]:
     # and remove empty lines
     # Join the lines back together
     # and return the cleaned blocks
-    # Split the text into blocks based on double newlines
-    # and remove leading/trailing whitespace from each block
-    # Remove empty blocks
-    # Remove leading/trailing whitespace from each line in the block
-    # and remove empty lines
-    # Join the lines back together
-    # and return the cleaned blocks
     blocks = [block.strip() for block in markdown.split('\n\n') if block.strip()]
     clean_blocks = ['\n'.join(line.strip() for line in block.split('\n') if line.strip()) for block in blocks]    
     return clean_blocks
