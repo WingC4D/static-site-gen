@@ -1,20 +1,6 @@
 from text_to_textnodes import BlockType, markdown_to_blocks, block_to_block_type, TextNode, TextType, re, text_to_textnodes
 from htmlnode import HTMLNode, LeafNode, ParentNode, text_node_to_html_node
 
-
-        
-
-def generate_page(from_path: str, template_path: str, dst_path: str) -> None:
-    print(f'Generating page from {from_path} to {dst_path} using {template_path}')
-    with open(from_path, 'r') as rf, open(template_path, 'r') as tmp_f, open(dst_path,'w') as wf:
-        rf_contents = rf.read()
-        tmp_contents = tmp_f.read()
-        html_str = markdown_to_html_node(rf_contents).to_html()
-        title = extract_title(rf_contents)
-        tmp_contents = title.join(tmp_contents.split(r'{{ Title }}'))
-        tmp_contents = html_str.join(tmp_contents.split(r'{{ Content }}'))
-        wf.write(str(tmp_contents))
-
 def extract_title(markdown: str) -> str:
     title_as_list = [' '.join(block.split()[1:])
                           for block in markdown_to_blocks(markdown)
